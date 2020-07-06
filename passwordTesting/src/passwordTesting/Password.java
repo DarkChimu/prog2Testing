@@ -9,19 +9,13 @@ public class Password {
 
 	public static final int contLongitudDefault = 8;
 	public int contLongitud;
+	boolean isStrong = false;
 	public String cont;
 	
 	
 	
-	
-	
-	public Password (String _cont, int _contLongitud) {
-		cont = _cont;
-		contLongitud = _contLongitud;
-	}
-	
-	
-	public void passwordGen (int contLongitud) {
+	public void passwordGen () {
+		
 		if (contLongitud == 0) 
 		{
 		cont = new Random().ints(contLongitudDefault, 33, 122).mapToObj(i -> String.valueOf((char)i)).collect(Collectors.joining());
@@ -31,11 +25,9 @@ public class Password {
 			cont = new Random().ints(contLongitud, 33, 122).mapToObj(i -> String.valueOf((char)i)).collect(Collectors.joining());
 		}
 		
-		//System.out.println(cont);
 	}
 	
 	public void esFuerte() {
-		boolean isStrong = false;
 		int upperCase=0;
 		int lowerCase=0;
 		int numberCase=0;
@@ -49,14 +41,41 @@ public class Password {
 		       
 		      }
 		
-		if (upperCase > 2 && lowerCase > 1 && numberCase > 5) 
+		if (upperCase >= 2 && lowerCase >= 1 && numberCase >= 5) 
 	       {
 	    	   isStrong = true;
-	    	   JOptionPane.showMessageDialog(null, "la contraseña: "+cont+", No es fuerte");
+	    	   System.out.println("la contraseña: "+cont+", Es fuerte");
 	       }
 		else {
-		       JOptionPane.showMessageDialog(null, "la contraseña: "+cont+", No es fuerte");
+			   System.out.println("la contraseña: "+cont+", No es fuerte");
 	    	 }
+	}
+	
+	public boolean isStrong() {
+		return isStrong;
+	}
+
+	public void setStrong(boolean isStrong) {
+		this.isStrong = isStrong;
+	}
+
+	public int getContLongitud() {
+		return contLongitud;
+	}
+
+
+	public void setContLongitud(int contLongitud) {
+		this.contLongitud = contLongitud;
+	}
+
+
+	public String getCont() {
+		return cont;
+	}
+
+
+	public void setCont(String cont) {
+		this.cont = cont;
 	}
 	
 	
